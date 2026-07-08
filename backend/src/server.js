@@ -17,7 +17,7 @@ const port = process.env.PORT || 5000;
 
 const allowedOrigins = new Set([
   process.env.CLIENT_URL || 
-  'https://udhar-app-3.onrender.com'
+  'https://udhar-app-4.onrender.com'
 ]);
 
 app.use(cors({
