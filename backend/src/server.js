@@ -30,6 +30,7 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/api/health', (req, res) => res.json({ ok: true, app: 'Udhar Tracker App' }));
+app.use('/auth', authRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', requireAuth, createTransactionRouter('customer'));
 app.use('/api/suppliers', requireAuth, createTransactionRouter('supplier'));

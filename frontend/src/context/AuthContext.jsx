@@ -8,11 +8,11 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   async function requestOtp(phone) {
-    return api('/auth/request-otp', { method: 'POST', body: { phone } });
+    return api('/api/auth/request-otp', { method: 'POST', body: { phone } });
   }
 
   async function verifyOtp(phone, otp) {
-    const data = await api('/auth/verify-otp', { method: 'POST', body: { phone, otp } });
+    const data = await api('/api/auth/verify-otp', { method: 'POST', body: { phone, otp } });
     saveToken(data.token);
     setTokenState(data.token);
     setUser(data.user);

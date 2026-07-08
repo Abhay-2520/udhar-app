@@ -1,4 +1,8 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const envUrl = (import.meta.env.VITE_API_URL || '').trim();
+const normalizedBase = envUrl
+  ? envUrl.replace(/\/$/, '')
+  : (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000');
+const API_URL = normalizedBase.endsWith('/api') ? normalizedBase : `${normalizedBase}/api`;
 
 export function getToken() {
   return localStorage.getItem('udhar_token');
@@ -14,7 +18,10 @@ export async function api(path, options = {}) {
   const token = getToken();
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  const response = await fetch(`${API_URL}${path}`, {
+  const normalizedPath = path.replace(/^\/api/, '');
+  const requestUrl = `${API_URL}${normalizedPath.startsWith('/') ? '' : '/'}${normalizedPath}`;
+
+  const response = await fetch(requestUrl, {
     ...options,
     headers,
     body: options.body ? JSON.stringify(options.body) : undefined
