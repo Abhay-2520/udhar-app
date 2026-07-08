@@ -16,7 +16,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const allowedOrigins = new Set([
-  process.env.CLIENT_URL || 'http://localhost:5173',
+  process.env.CLIENT_URL || 
   'https://udhar-app-3.onrender.com'
 ]);
 
