@@ -15,8 +15,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-const allowedOrigins = new Set([
-  process.env.CLIENT_URL || 
+const allowedOrigins = new Set([ 
   'https://udhar-app-4.onrender.com'
 ]);
 
